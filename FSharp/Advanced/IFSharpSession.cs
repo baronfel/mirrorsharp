@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Microsoft.CodeAnalysis;
 using Microsoft.FSharp.Collections;
-using Microsoft.FSharp.Compiler;
-using Microsoft.FSharp.Compiler.SourceCodeServices;
+using FSharp.Compiler;
+using FSharp.Compiler.SourceCodeServices;
 
 namespace MirrorSharp.FSharp.Advanced {
     /// <summary>Represents a user session based on F# parser.</summary>

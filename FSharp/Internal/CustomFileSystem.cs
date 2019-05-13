@@ -3,7 +3,7 @@ using System.Collections.Concurrent;
 using System.IO;
 using System.Reflection;
 using JetBrains.Annotations;
-using Microsoft.FSharp.Compiler.AbstractIL.Internal;
+using FSharp.Compiler.AbstractIL.Internal;
 using MirrorSharp.FSharp.Advanced;
 
 namespace MirrorSharp.FSharp.Internal {
@@ -13,7 +13,7 @@ namespace MirrorSharp.FSharp.Internal {
         private readonly ConcurrentDictionary<string, FSharpVirtualFile> _virtualFiles = new ConcurrentDictionary<string, FSharpVirtualFile>();
         private readonly ConcurrentDictionary<string, byte[]> _fileBytesCache = new ConcurrentDictionary<string, byte[]>();
         private readonly ConcurrentDictionary<string, bool> _fileExistsCache = new ConcurrentDictionary<string, bool>();
-        
+
         public static CustomFileSystem Instance { get; } = new CustomFileSystem();
 
         private CustomFileSystem() {

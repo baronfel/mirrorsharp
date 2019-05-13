@@ -18,5 +18,5 @@ using System.Runtime.InteropServices;
 [assembly: InternalsVisibleTo("MirrorSharp.Owin")]
 [assembly: InternalsVisibleTo("MirrorSharp.Testing")]
 [assembly: InternalsVisibleTo("MirrorSharp.Tests.Roslyn2.NetCore")]
-[assembly: InternalsVisibleTo("MirrorSharp.Tests.Roslyn2.Net46")]
+[assembly: InternalsVisibleTo("MirrorSharp.Tests.Roslyn2.Net461")]
 [assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]

@@ -8,8 +8,8 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Completion;
 using Microsoft.CodeAnalysis.Text;
 using Microsoft.FSharp.Collections;
-using Microsoft.FSharp.Compiler;
-using Microsoft.FSharp.Compiler.SourceCodeServices;
+using FSharp.Compiler;
+using FSharp.Compiler.SourceCodeServices;
 using Microsoft.FSharp.Control;
 using MirrorSharp.FSharp.Advanced;
 using MirrorSharp.Internal.Abstraction;
@@ -43,7 +43,7 @@ namespace MirrorSharp.FSharp.Internal {
                 useScriptResolutionRules: false,
                 loadTime: DateTime.Now,
                 unresolvedReferences: null,
-                originalLoadReferences: FSharpList<Tuple<Range.range, string>>.Empty, 
+                originalLoadReferences: FSharpList<Tuple<Range.range, string>>.Empty,
                 extraProjectInfo: null,
                 stamp: null
             );
@@ -93,7 +93,7 @@ namespace MirrorSharp.FSharp.Internal {
             var diagnosticCount = result.ParseResults.Errors.Length + (success?.Item.Errors.Length ?? 0);
             if (diagnosticCount == 0)
                 return ImmutableArray<Diagnostic>.Empty;
-            
+
             var diagnostics = ImmutableArray.CreateBuilder<Diagnostic>(diagnosticCount);
             ConvertAndAddTo(diagnostics, result.ParseResults.Errors);
 
@@ -102,7 +102,7 @@ namespace MirrorSharp.FSharp.Internal {
 
             return diagnostics.MoveToImmutable();
         }
-        
+
         public async ValueTask<FSharpParseAndCheckResults> ParseAndCheckAsync(CancellationToken cancellationToken) {
             if (_lastParseAndCheck != null)
                 return _lastParseAndCheck;

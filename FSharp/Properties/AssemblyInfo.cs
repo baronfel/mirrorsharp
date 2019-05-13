@@ -6,4 +6,4 @@ using System.Runtime.InteropServices;
 // COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
 
-[assembly: InternalsVisibleTo("MirrorSharp.Tests.Roslyn2.Net46")]
+[assembly: InternalsVisibleTo("MirrorSharp.Tests.Roslyn2.Net461")]

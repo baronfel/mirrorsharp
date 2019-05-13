@@ -17,7 +17,7 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Tests.Shared", "Tests.Share
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FSharp", "FSharp\FSharp.csproj", "{A904B17F-1015-4676-B731-32353C22C49D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.Roslyn2.Net46", "Tests.Roslyn2.Net46\Tests.Roslyn2.Net46.csproj", "{7F531F1E-5AF6-4FC6-BF71-84EB00C1B1EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.Roslyn2.Net461", "Tests.Roslyn2.Net461\Tests.Roslyn2.Net461.csproj", "{7F531F1E-5AF6-4FC6-BF71-84EB00C1B1EC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Owin.Demo", "Owin.Demo\Owin.Demo.csproj", "{3C2A0FC7-4485-4654-B3B2-5717A2F2C97A}"
 EndProject
