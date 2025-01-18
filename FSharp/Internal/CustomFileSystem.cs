@@ -24,7 +24,7 @@ namespace MirrorSharp.FSharp.Internal {
             AssemblyLoader = new CustomAssemblyLoader();
         }
 
-        public Stream OpenFileForReadShim(string filePath, FSharpOption<bool> useMemoryMappedFile, FSharpOption<bool> shouldShadowCopy) {
+        public Stream OpenFileForReadShim(string filePath, FSharpOption<bool>? useMemoryMappedFile, FSharpOption<bool>? shouldShadowCopy) {
             if (GetVirtualFile(filePath) is { } virtualFile)
                 return virtualFile.GetStreamWrapper().Reuse();
 
@@ -39,8 +39,8 @@ namespace MirrorSharp.FSharp.Internal {
             return new MemoryStream(_fileBytesCache.GetOrAdd(filePath, f => File.ReadAllBytes(f)));
         }
 
-        public Stream OpenFileForWriteShim(string filePath, FSharpOption<FileMode> fileMode, FSharpOption<FileAccess> fileAccess, FSharpOption<FileShare> fileShare) {
-            if (GetVirtualFile(filePath) is {} virtualFile)
+        public Stream OpenFileForWriteShim(string filePath, FSharpOption<FileMode>? fileMode, FSharpOption<FileAccess>? fileAccess, FSharpOption<FileShare>? fileShare) {
+            if (GetVirtualFile(filePath) is { } virtualFile)
                 return virtualFile.GetStreamWrapper().Reuse();
 
             throw new NotSupportedException();
@@ -75,7 +75,7 @@ namespace MirrorSharp.FSharp.Internal {
         }
 
         public DateTime GetLastWriteTimeShim(string fileName) {
-            if (GetVirtualFile(fileName) is {} virtualFile)
+            if (GetVirtualFile(fileName) is { } virtualFile)
                 return virtualFile.LastWriteTime;
 
             EnsureIsAssemblyFile(fileName);
@@ -86,7 +86,7 @@ namespace MirrorSharp.FSharp.Internal {
         }
 
         public DateTime GetCreationTimeShim(string path) {
-            if (GetVirtualFile(path) is {} virtualFile)
+            if (GetVirtualFile(path) is { } virtualFile)
                 return DateTime.MinValue;
 
             EnsureIsAssemblyFile(path);

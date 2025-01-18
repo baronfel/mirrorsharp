@@ -24,7 +24,7 @@ public class FSharpProjectOptionsExtensionsTests {
     [InlineData(new[] { "--optimize+" }, null, new string[0])]
     [InlineData(new[] { "--optimize-" }, true, new[] { "--optimize+" })]
     [InlineData(new[] { "--optimize-" }, null, new string[0])]
-    [InlineData(new string[0], true,  new[] { "--optimize+" })]
+    [InlineData(new string[0], true, new[] { "--optimize+" })]
     [InlineData(new string[0], false, new[] { "--optimize-" })]
     public void WithOtherOptionOptimize_ReturnsExpectedOptions_IfValueIsNotTheSame(string[] otherOptions, bool? newValue, string[] expected) {
         var options = NewOptions(otherOptions: otherOptions).WithOtherOptionOptimize(newValue);
@@ -46,7 +46,7 @@ public class FSharpProjectOptionsExtensionsTests {
     [Theory]
     [InlineData(new[] { "--target:exe" }, FSharpTargets.Library, new[] { "--target:library" })]
     [InlineData(new[] { "--target:library" }, FSharpTargets.Exe, new[] { "--target:exe" })]
-    [InlineData(new string[0], FSharpTargets.Library,  new[] { "--target:library" })]
+    [InlineData(new string[0], FSharpTargets.Library, new[] { "--target:library" })]
     public void WithOtherOptionTarget_ReturnsExpectedOptions_IfValueIsNotTheSame(string[] otherOptions, string newValue, string[] expected) {
         var options = NewOptions(otherOptions: otherOptions).WithOtherOptionTarget(newValue);
         Assert.Equal(expected, options.OtherOptions);
@@ -78,7 +78,7 @@ public class FSharpProjectOptionsExtensionsTests {
             "_",
             FSharpOption<string>.None,
             new string[0],
-            otherOptions,
+            otherOptions ?? new string[0] { },
             Array.Empty<FSharpReferencedProject>(),
             false,
             false,

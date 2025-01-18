@@ -76,16 +76,16 @@ internal class FSharpSession : ILanguageSessionInternal, IFSharpSession {
         AssemblyReferencePathsAsFSharpList = ToFSharpList(options.AssemblyReferencePaths);
         _projectOptions = new FSharpProjectOptions(
             "_",
-            projectId: null,
+            projectId: FSharpOption<string>.None,
             sourceFiles: new[] { _sourceFile.Path },
             otherOptions: ConvertToOtherOptionsSlow(options),
             referencedProjects: Array.Empty<FSharpReferencedProject>(),
             isIncompleteTypeCheckEnvironment: true,
             useScriptResolutionRules: false,
             loadTime: DateTime.Now,
-            unresolvedReferences: null,
+            unresolvedReferences: FSharpOption<FSharpUnresolvedReferencesSet>.None,
             originalLoadReferences: FSharpList<Tuple<range, string, string>>.Empty,
-            stamp: null
+            stamp: FSharpOption<long>.None
         );
     }
 
