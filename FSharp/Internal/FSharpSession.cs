@@ -55,7 +55,7 @@ internal class FSharpSession : ILanguageSessionInternal, IFSharpSession {
         _memoryStreamManager = memoryStreamManager;
 
         Checker = FSharpChecker.Create(
-            null,
+            projectCacheSize: null,
             keepAssemblyContents: true,
             keepAllBackgroundResolutions: true,
             legacyReferenceResolver: null,
@@ -68,8 +68,8 @@ internal class FSharpSession : ILanguageSessionInternal, IFSharpSession {
             parallelReferenceResolution: false,
             captureIdentifiersWhenParsing: false,
             documentSource: FSharpOption<DocumentSource>.Some(DocumentSource.FileSystem),
-            useSyntaxTreeCache: false,
-            useTransparentCompiler: false
+            useTransparentCompiler: false,
+            transparentCompilerCacheSizes: null
         );
         // Checker.ImplicitlyStartBackgroundWork = false;
         AssemblyReferencePaths = options.AssemblyReferencePaths;
@@ -186,7 +186,7 @@ internal class FSharpSession : ILanguageSessionInternal, IFSharpSession {
         return _lastParseAndCheck?.CheckAnswer;
     }
 
-    public async ValueTask<Tuple<FSharpDiagnostic[], int>> CompileAsync(MemoryStream assemblyStream, CancellationToken cancellationToken) {
+    public async ValueTask<Tuple<FSharpDiagnostic[], Exception?>> CompileAsync(MemoryStream assemblyStream, CancellationToken cancellationToken) {
         Argument.NotNull(nameof(assemblyStream), assemblyStream);
         if (_outputStream != null)
             throw new InvalidOperationException("Attempted to call CompileAsync when output stream was already set.");
@@ -195,8 +195,9 @@ internal class FSharpSession : ILanguageSessionInternal, IFSharpSession {
         try {
             _outputStream = assemblyStream;
             var compiledAsync = Checker.Compile(args, userOpName: null);
-            return await FSharpAsync.StartAsTask(compiledAsync, null, cancellationToken)
+            var result = await FSharpAsync.StartAsTask(compiledAsync, null, cancellationToken)
                 .ConfigureAwait(false);
+            return Tuple.Create(result.Item1, result.Item2 is null ? null : result.Item2.Value);
         }
         finally {
             _outputStream = null;

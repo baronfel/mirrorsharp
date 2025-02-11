@@ -28,7 +28,7 @@ namespace MirrorSharp.FSharp.Advanced {
         /// <param name="assemblyStream">Stream to compile the assembly to.</param>
         /// <param name="cancellationToken">A <see cref="CancellationToken"/> that can be used to cancel the call.</param>
         /// <returns>A tuple returned from the F# compilation call.</returns>
-        ValueTask<Tuple<FSharpDiagnostic[], int>> CompileAsync(MemoryStream assemblyStream, CancellationToken cancellationToken);
+        ValueTask<Tuple<FSharpDiagnostic[], System.Exception?>> CompileAsync(MemoryStream assemblyStream, CancellationToken cancellationToken);
 
         /// <summary>Converts <see cref="FSharpDiagnostic" /> to a <see cref="Diagnostic" />.</summary>
         /// <param name="diagnostic"><see cref="FSharpDiagnostic" /> value to convert.</param>
